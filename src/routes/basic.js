@@ -1,11 +1,14 @@
-import { api } from "../constants/api.js";
+import { openai } from "../constants/api.js";
 
 export const chatWait = async (req, res) => {
    try {
       const { txt } = req.body;
-      let resp = await api.sendMessage(txt);
-      console.log(resp);
-      res.send(resp.text);
+      let completion = await openai.createChatCompletion({
+         model: "gpt-3.5-turbo",
+         messages: [{ role: "user", content: txt }],
+      });
+      console.log(completion.data.choices[0]);
+      res.send(completion.data.choices[0]);
    } catch (err) {
       console.log(err);
       res.send("Error");
