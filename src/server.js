@@ -20,12 +20,12 @@ app.use(jsonParser);
 app.use(urlencodedParser);
 app.use(helmet());
 
-// Login endpoint
+// Chat endpoint
 app.get("/chat/wait", basic.chatWait);
 app.get("/chat/stream", basic.chatStream);
 app.get("/chat/followup", basic.chatFollowUp);
 
 // Start the server
-app.listen(3000, () => {
-   console.log("Server listening on port 3000");
+app.listen(5029, () => {
+   console.log("Server listening on port 5029");
 });
